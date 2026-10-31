@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-background": "#0b1c30", "surface-bright": "#f8f9ff", "on-surface-variant": "#434655", "on-tertiary": "#ffffff", "outline-variant": "#c3c6d7", "inverse-primary": "#b4c5ff", "surface": "#f8f9ff", "primary-container": "#2563eb", "on-secondary": "#ffffff", "error": "#ba1a1a", "secondary-fixed-dim": "#d2bbff", "surface-variant": "#d3e4fe", "on-tertiary-fixed": "#00201d", "on-surface": "#0b1c30", "secondary-fixed": "#eaddff", "inverse-surface": "#213145", "on-error": "#ffffff", "primary-fixed-dim": "#b4c5ff", "surface-container": "#e5eeff", "primary": "#004ac6", "outline": "#737686", "tertiary-fixed-dim": "#6bd8cb", "primary-fixed": "#dbe1ff", "on-secondary-fixed-variant": "#5a00c6", "on-primary-container": "#eeefff", "tertiary-container": "#007b71", "on-primary-fixed-variant": "#003ea8", "surface-dim": "#cbdbf5", "surface-tint": "#0053db", "on-primary": "#ffffff", "surface-container-high": "#dce9ff", "on-error-container": "#93000a", "secondary-container": "#8a4cfc", "on-primary-fixed": "#00174b", "error-container": "#ffdad6", "on-secondary-fixed": "#25005a", "on-secondary-container": "#fffbff", "surface-container-highest": "#d3e4fe", "background": "#f8f9ff", "on-tertiary-fixed-variant": "#005049", "on-tertiary-container": "#b3fff3", "tertiary-fixed": "#89f5e7", "surface-container-low": "#eff4ff", "tertiary": "#006058", "inverse-on-surface": "#eaf1ff", "secondary": "#712ae2", "surface-container-lowest": "#ffffff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xs": "0.25rem", "space-sm": "0.5rem", "gutter": "1.25rem", "gutter-compact": "0.75rem", "margin": "1.5rem", "margin-panel": "1rem", "space-lg": "1.25rem", "space-md": "0.875rem", "space-xl": "2rem" }, "fontFamily": { "headline-md": ["Inter"], "body-lg": ["Inter"], "headline-sm": ["Inter"], "headline-lg": ["Inter"], "body-sm": ["Inter"], "body-md": ["Inter"], "headline-xl": ["Inter"], "label-md": ["Inter"], "label-code": ["JetBrains Mono"] }, "fontSize": { "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}], "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}], "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}], "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}], "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}], "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}], "headline-xl": ["30px", {"lineHeight": "38px", "fontWeight": "700"}], "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}], "label-code": ["12px", {"lineHeight": "16px", "fontWeight": "500"}] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="AI SupportDesk Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1X7VFz9WuI9lLdFel93NR5iaEA06l79UX-Z5sN-2-BRh9KtXAZtr5-dkobsRfD0HoFgbb376xwfjOBcqAu5Ny6tduWi0GUnDBKPZk8uyCL1Q-MA2nNG0tHmT2T4ZFw_26_EqGom91BGHPbhT0XMzuVejraN9YlFJYlv9jylVg_CZirSEpgKDl0Keox7AYAcS2jK7jhLpziap7VYxKsNJOWkTMPNbQ842ZjJfHX0py1Qp5dmXy8Gn-Va"/><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">AI SupportDesk</span></div><span class="px-2 py-0.5 rounded-full bg-surface-container text-primary font-label-md text-label-md">AI</span></div><div class="px-space-md py-space-sm"><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-body-md text-body-md" data-path="dashboard" href="#">Dashboard</a><a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-body-md text-body-md" data-path="ticket-queue" href="#"><span>Ticket Queue</span><span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-md text-label-md font-semibold">18</span></a><a aria-current="page" class="flex items-center justify-between px-space-md py-2.5 transition-all bg-primary-container text-on-primary-container font-semibold rounded-lg" data-path="analytics" href="#">Analytics</a><a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-body-md text-body-md" data-path="bulk-upload" href="#">Bulk Upload</a><a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-body-md text-body-md" data-path="knowledge-base" href="#">Knowledge Base</a></nav></div></div><div class="p-space-md flex flex-col gap-space-sm"><div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span><span class="font-label-md text-label-md text-on-surface-variant font-medium">Gemini 1.5 Pro</span></div><span class="font-label-code text-label-code text-tertiary font-semibold">ACTIVE</span></div><div class="flex items-center justify-between pt-space-xs px-space-xs"><a class="flex items-center gap-2 text-on-surface-variant hover:text-on-surface transition-colors font-body-sm text-body-sm" href="#"><span class="material-symbols-outlined text-lg">help</span><span>Help &amp; Docs</span></a><button class="text-on-surface-variant hover:text-on-surface transition-colors p-1 rounded" type="button"><span class="material-symbols-outlined text-lg">swap_horiz</span></button></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-margin"><div class="flex items-center flex-1 max-w-xl"><div class="relative w-full"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">search</span><input class="w-full h-10 pl-10 pr-12 rounded-lg bg-surface-container-low text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary-container font-body-sm text-body-sm transition-all" placeholder="Search tickets by ID, customer name, issue, or keyword (⌘K)..." type="text"/><span class="absolute right-3 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-code text-label-code">⌘K</span></div></div><div class="flex items-center gap-space-md"><button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-xl">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span></button><button class="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-primary-container text-on-primary-container hover:bg-primary transition-colors font-body-sm text-body-sm font-semibold" type="button"><span class="material-symbols-outlined text-lg">add</span><span>New Ticket</span></button><div class="h-6 w-px bg-outline-variant"></div><div class="flex items-center gap-3"><div class="relative"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpow0g5hb1TLAcRdVu9N1OPuD4xLRkkVnsPlIaMrzW9PLV0aqEeIU9nmbe6MtMiXUaNYCCAZ5RQPvrWdEHRpHPvqqwH0R2qc-ZGJtGfcIBZB0H7nTPBYJNzHPmUZK5XcfE17dNH8LWJKIvzuUZd7YIg_mJSvjp73Ed0SCjQZtNbdCDme1wvne5CEbs-hO--hR6XpWWMPfly-1U0EF6KGSnEO0l5TaCL-YfzFC8PyuhRBgJBvvYGGA"/><span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-tertiary border-2 border-surface-container-lowest"></span></div><div class="hidden md:flex flex-col"><span class="font-body-sm text-body-sm font-semibold text-on-surface leading-tight">Alex Morgan</span><span class="font-label-md text-label-md text-on-surface-variant leading-tight">Tier 2 Support Lead</span></div></div></div></header><main class="w-full pt-16 bg-background px-margin min-h-screen"><div class="flex flex-col w-full pb-12">
+<!-- Top Action & Filter Header -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Analytics</h1>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-code text-label-code font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          REAL-TIME TELEMETRY
+        </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Monitor ticket trends, triage speed, and AI classification performance.</p>
+</div>
+<!-- Right Controls -->
+<div class="flex flex-wrap items-center gap-2.5">
+<!-- Relative Sync Info -->
+<div class="hidden xl:flex items-center gap-1.5 text-on-surface-variant font-body-sm text-body-sm mr-1">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span>Updated 4m ago</span>
+</div>
+<!-- Time Range Selector -->
+<div class="relative inline-block text-left" id="rangeDropdownContainer">
+<button class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-container-lowest text-on-surface shadow-sm hover:bg-surface-container-low transition-colors font-body-sm text-body-sm font-medium" id="rangeDropdownBtn" type="button">
+<span class="material-symbols-outlined text-lg text-on-surface-variant">calendar_today</span>
+<span id="selectedRangeLabel">Last 30 Days</span>
+<span class="material-symbols-outlined text-base text-on-surface-variant">expand_more</span>
+</button>
+<div class="hidden absolute right-0 mt-1.5 w-44 rounded-xl bg-surface-container-lowest shadow-lg py-1.5 z-30" id="rangeDropdownMenu">
+<a class="dropdown-item flex items-center justify-between px-3 py-2 text-on-surface hover:bg-surface-container font-body-sm text-body-sm" data-range="Today" href="#">Today</a>
+<a class="dropdown-item flex items-center justify-between px-3 py-2 text-on-surface hover:bg-surface-container font-body-sm text-body-sm" data-range="Last 7 Days" href="#">Last 7 Days</a>
+<a class="dropdown-item flex items-center justify-between px-3 py-2 text-primary font-semibold bg-surface-container-low font-body-sm text-body-sm" data-range="Last 30 Days" href="#">
+<span>Last 30 Days</span>
+<span class="material-symbols-outlined text-base text-primary">check</span>
+</a>
+<a class="dropdown-item flex items-center justify-between px-3 py-2 text-on-surface hover:bg-surface-container font-body-sm text-body-sm" data-range="Last Quarter" href="#">Last Quarter</a>
+</div>
+</div>
+<!-- Refresh Button -->
+<button class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-surface-container-lowest text-on-surface shadow-sm hover:bg-surface-container-low transition-colors font-body-sm text-body-sm font-medium" id="refreshBtn" title="Refresh Telemetry" type="button">
+<span class="material-symbols-outlined text-lg text-on-surface-variant transition-transform" id="refreshIcon">sync</span>
+<span>Refresh Data</span>
+</button>
+<!-- Export Report Button -->
+<button class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-primary-container text-on-primary-container hover:bg-primary transition-colors font-body-sm text-body-sm font-semibold shadow-sm" type="button">
+<span class="material-symbols-outlined text-lg">download</span>
+<span>Export Report</span>
+</button>
+</div>
+</div>
+<!-- Top 5 Summary KPI Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 mb-6">
+<!-- Card 1: Total Tickets -->
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm hover:shadow transition-shadow flex flex-col justify-between">
+<div class="flex items-center justify-between mb-3">
+<span class="font-body-sm text-body-sm font-medium text-on-surface-variant">Total Tickets</span>
+<div class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">layers</span>
+</div>
+</div>
+<div>
+<div id="total-tickets" class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-1">3,842</div>
+<div class="inline-flex items-center gap-1 font-label-md text-label-md text-tertiary">
+<span class="material-symbols-outlined text-sm font-bold">trending_up</span>
+<span class="font-medium">+14.2%</span>
+<span class="text-on-surface-variant font-normal">vs last month</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Open Tickets -->
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm hover:shadow transition-shadow flex flex-col justify-between">
+<div class="flex items-center justify-between mb-3">
+<span class="font-body-sm text-body-sm font-medium text-on-surface-variant">Open Tickets</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">schedule</span>
+</div>
+</div>
+<div>
+<div id="open-tickets" class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-1">142</div>
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-error-container text-on-error-container font-label-md text-label-md font-medium">
+<span class="material-symbols-outlined text-xs">priority_high</span>
+<span>18 require urgent triage</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Resolved Tickets -->
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm hover:shadow transition-shadow flex flex-col justify-between">
+<div class="flex items-center justify-between mb-3">
+<span class="font-body-sm text-body-sm font-medium text-on-surface-variant">Resolved Tickets</span>
+<div class="w-8 h-8 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+</div>
+</div>
+<div>
+<div id="resolved-tickets" class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-1">3,480</div>
+<div class="inline-flex items-center gap-1 font-label-md text-label-md text-tertiary">
+<span class="material-symbols-outlined text-sm font-bold">verified</span>
+<span class="font-medium">94.6%</span>
+<span class="text-on-surface-variant font-normal">SLA achievement</span>
+</div>
+</div>
+</div>
+<!-- Card 4: High Priority Tickets -->
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm hover:shadow transition-shadow flex flex-col justify-between">
+<div class="flex items-center justify-between mb-3">
+<span class="font-body-sm text-body-sm font-medium text-on-surface-variant">High Priority</span>
+<div class="w-8 h-8 rounded-lg bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-lg">warning</span>
+</div>
+</div>
+<div>
+<div id="high-priority" class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-1">248</div>
+<div class="inline-flex items-center gap-1 font-label-md text-label-md text-error">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+<span class="font-medium">6.5%</span>
+<span class="text-on-surface-variant font-normal">of total volume</span>
+</div>
+</div>
+</div>
+<!-- Card 5: Average AI Confidence -->
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm hover:shadow transition-shadow flex flex-col justify-between">
+<div class="flex items-center justify-between mb-3">
+<span class="font-body-sm text-body-sm font-medium text-on-surface-variant">Avg AI Confidence</span>
+<div class="w-8 h-8 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-lg">auto_awesome</span>
+</div>
+</div>
+<div>
+<div id="avg-confidence" class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-1">94.8%</div>
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-md text-label-md font-medium">
+<span class="material-symbols-outlined text-xs">bolt</span>
+<span>+1.8% model precision gain</span>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 1: Ticket Trends Over Time -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-5 mb-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4">
+<div>
+
+<p class="font-body-sm text-body-sm text-on-surface-variant">Daily incoming tickets vs auto-resolved tickets over the past 30 days</p>
+</div>
+<!-- Legend & Velocity Quick Stats -->
+<div class="flex flex-wrap items-center gap-4 text-body-sm font-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-full bg-primary-container"></span>
+<span class="font-medium text-on-surface">Incom<h2 class="font-headline-md text-headline-md text-on-surface">Ticket Ingestion &amp; Resolution Trends</h2>ing Tickets (3,842)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="font-medium text-on-surface">Auto-Resolved (3,260)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-full bg-error-container"></span>
+<span class="font-medium text-on-surface">Human Triage (582)</span>
+</div>
+</div>
+</div>
+<!-- Area Chart Canvas -->
+<div class="relative w-full pt-2">
+<!-- Floating Milestone Annotation -->
+<div class="absolute top-6 left-[76%] -translate-x-1/2 z-10 hidden sm:flex flex-col items-center pointer-events-none">
+<div class="bg-inverse-surface text-inverse-on-surface px-2.5 py-1.5 rounded-lg shadow-md font-label-md text-label-md flex items-center gap-1.5 whitespace-nowrap">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="font-semibold">Oct 24:</span>
+<span>164 Inbound (96.2% AI Classified)</span>
+</div>
+<div class="w-1.5 h-1.5 bg-inverse-surface rotate-45 -mt-1"></div>
+</div>
+<!-- Chart SVG Visualization -->
+<svg class="w-full h-64 md:h-72" fill="none" preserveaspectratio="none" viewbox="0 0 1000 320">
+<defs>
+<!-- Gradient for Inbound Tickets -->
+<lineargradient id="blueGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#2563eb" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#2563eb" stop-opacity="0.0"></stop>
+</lineargradient>
+<!-- Gradient for Auto-Resolved Tickets -->
+<lineargradient id="purpleGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#712ae2" stop-opacity="0.20"></stop>
+<stop offset="100%" stop-color="#712ae2" stop-opacity="0.0"></stop>
+</lineargradient>
+<!-- Subtle dashed grid pattern -->
+<pattern height="60" id="gridPattern" patternunits="userSpaceOnUse" width="1000">
+<line stroke="#e5eeff" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="1000" y1="0" y2="0"></line>
+</pattern>
+</defs>
+<!-- Horizontal Grid Lines -->
+<rect fill="url(#gridPattern)" height="240" width="930" x="50" y="20"></rect>
+<line stroke="#c3c6d7" stroke-width="1" x1="50" x2="980" y1="260" y2="260"></line>
+<!-- Y Axis Numbers -->
+<text fill="#737686" font-family="Inter" font-size="11" text-anchor="end" x="35" y="25">200</text>
+<text fill="#737686" font-family="Inter" font-size="11" text-anchor="end" x="35" y="85">150</text>
+<text fill="#737686" font-family="Inter" font-size="11" text-anchor="end" x="35" y="145">100</text>
+<text fill="#737686" font-family="Inter" font-size="11" text-anchor="end" x="35" y="205">50</text>
+<text fill="#737686" font-family="Inter" font-size="11" text-anchor="end" x="35" y="264">0</text>
+<!-- Area 1: Inbound Tickets Fill -->
+<path d="M 50,220 C 120,210 180,185 240,165 C 300,145 360,195 420,135 C 480,75 540,110 600,85 C 660,60 720,115 780,45 C 840,65 910,80 970,70 L 970,260 L 50,260 Z" fill="url(#blueGradient)"></path>
+<!-- Area 2: Auto-Resolved Tickets Fill -->
+<path d="M 50,240 C 120,230 180,210 240,190 C 300,175 360,215 420,160 C 480,105 540,130 600,110 C 660,85 720,130 780,70 C 840,90 910,98 970,90 L 970,260 L 50,260 Z" fill="url(#purpleGradient)"></path>
+<!-- Line 1: Inbound Tickets Stroke -->
+<path d="M 50,220 C 120,210 180,185 240,165 C 300,145 360,195 420,135 C 480,75 540,110 600,85 C 660,60 720,115 780,45 C 840,65 910,80 970,70" fill="none" stroke="#2563eb" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- Line 2: Auto-Resolved Stroke -->
+<path d="M 50,240 C 120,230 180,210 240,190 C 300,175 360,215 420,160 C 480,105 540,130 600,110 C 660,85 720,130 780,70 C 840,90 910,98 970,90" fill="none" stroke="#712ae2" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- Milestone Highlight Marker at Oct 24 (x=780, y=45) -->
+<line stroke="#2563eb" stroke-dasharray="3 3" stroke-width="1.5" x1="780" x2="780" y1="35" y2="260"></line>
+<circle cx="780" cy="45" fill="#2563eb" r="5" stroke="#ffffff" stroke-width="2"></circle>
+<circle cx="780" cy="70" fill="#712ae2" r="4.5" stroke="#ffffff" stroke-width="2"></circle>
+<!-- X Axis Labels -->
+<text fill="#737686" font-family="Inter" font-size="11" text-anchor="middle" x="50" y="285">Oct 1</text>
+<text fill="#737686" font-family="Inter" font-size="11" text-anchor="middle" x="200" y="285">Oct 5</text>
+<text fill="#737686" font-family="Inter" font-size="11" text-anchor="middle" x="350" y="285">Oct 10</text>
+<text fill="#737686" font-family="Inter" font-size="11" text-anchor="middle" x="500" y="285">Oct 15</text>
+<text fill="#737686" font-family="Inter" font-size="11" text-anchor="middle" x="650" y="285">Oct 20</text>
+<text fill="#004ac6" font-family="Inter" font-size="11" font-weight="600" text-anchor="middle" x="780" y="285">Oct 24</text>
+<text fill="#737686" font-family="Inter" font-size="11" text-anchor="middle" x="960" y="285">Oct 30</text>
+</svg>
+</div>
+<!-- Chart Bottom Metrics Banner -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 pt-3 mt-1 bg-surface-container-low rounded-lg p-3">
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-md text-label-md">Peak Throughput</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">184 tickets/day</span>
+<span class="text-tertiary font-label-code text-label-code">Oct 24 Surge Sustained</span>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-md text-label-md">Avg Daily Velocity</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">128.1 tickets/day</span>
+<span class="text-on-surface-variant font-label-code text-label-code">Stable standard baseline</span>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-md text-label-md">Zero-Touch Resolution</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">84.9%</span>
+<span class="text-secondary font-label-code text-label-code">+3.4% automated deflection</span>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-md text-label-md">Mean Time to Resolve</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">4m 12s</span>
+<span class="text-tertiary font-label-code text-label-code">-52s vs previous period</span>
+</div>
+</div>
+</div>
+<!-- SECTION 2: Distributions Grid (Two balanced cards) -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+<!-- Card A: Ticket Category Distribution -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-5 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Ticket Category Distribution</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Volume and proportion across core taxonomy domains</p>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-code text-label-code font-medium">5 Core Taxonomies</span>
+</div>
+<!-- Donut & Breakdown Side-by-side -->
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center my-2">
+<!-- Donut Graphic -->
+<div class="sm:col-span-5 flex flex-col items-center justify-center relative py-2">
+<svg class="w-36 h-36" viewbox="0 0 120 120">
+<!-- Background ring -->
+<circle cx="60" cy="60" fill="none" r="48" stroke="#eff4ff" stroke-width="14"></circle>
+<!-- 1. Payment: 38% -> stroke-dasharray: 114.6 187 -->
+<circle id="payment-circle" cx="60" cy="60" fill="none" r="48" stroke="#2563eb" stroke-dasharray="114.6 301.6" stroke-dashoffset="0" stroke-width="14" transform="rotate(-90 60 60)"></circle>
+<!-- 2. Account: 24% -> 72.4 -->
+<circle cx="60" cy="60" fill="none" r="48" stroke="#4f46e5" stroke-dasharray="72.4 301.6" stroke-dashoffset="-114.6" stroke-width="14" transform="rotate(-90 60 60)"></circle>
+<!-- 3. Delivery: 18% -> 54.3 -->
+<circle cx="60" cy="60" fill="none" r="48" stroke="#007b71" stroke-dasharray="54.3 301.6" stroke-dashoffset="-187" stroke-width="14" transform="rotate(-90 60 60)"></circle>
+<!-- 4. Cancellation: 12% -> 36.2 -->
+<circle cx="60" cy="60" fill="none" r="48" stroke="#712ae2" stroke-dasharray="36.2 301.6" stroke-dashoffset="-241.3" stroke-width="14" transform="rotate(-90 60 60)"></circle>
+<!-- 5. Refund: 8% -> 24.1 -->
+<circle cx="60" cy="60" fill="none" r="48" stroke="#c026d3" stroke-dasharray="24.1 301.6" stroke-dashoffset="-277.5" stroke-width="14" transform="rotate(-90 60 60)"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+<span id="category-total" class="font-headline-sm text-headline-sm text-on-surface">3,842</span>
+<span class="font-label-code text-label-code text-on-surface-variant uppercase tracking-wider">Tickets</span>
+</div>
+</div>
+<!-- Category Progress Bars -->
+<div class="sm:col-span-7 flex flex-col gap-2.5">
+<!-- Payment -->
+<div>
+<div class="flex items-center justify-between text-body-sm font-body-sm mb-1">
+<span class="flex items-center gap-1.5 font-medium text-on-surface">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+                  Payment
+                </span>
+<div class="flex items-center gap-2">
+<span id="payment-count" class="text-on-surface-variant font-label-code text-label-code">1,460 (38.0%)</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container font-label-code text-label-code text-tertiary">97.4%</span>
+</div>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 38.0%"></div>
+</div>
+</div>
+<!-- Account -->
+<div>
+<div class="flex items-center justify-between text-body-sm font-body-sm mb-1">
+<span class="flex items-center gap-1.5 font-medium text-on-surface">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                  Account
+                </span>
+<div class="flex items-center gap-2">
+<span id="account-count" class="text-on-surface-variant font-label-code text-label-code">922 (24.0%)</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container font-label-code text-label-code text-tertiary">95.8%</span>
+</div>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 24.0%"></div>
+</div>
+</div>
+<!-- Delivery -->
+<div>
+<div class="flex items-center justify-between text-body-sm font-body-sm mb-1">
+<span class="flex items-center gap-1.5 font-medium text-on-surface">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+                  Delivery
+                </span>
+<div class="flex items-center gap-2">
+<span class="text-on-surface-variant font-label-code text-label-code">691 (18.0%)</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container font-label-code text-label-code text-tertiary">93.6%</span>
+</div>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-tertiary-container rounded-full" style="width: 18.0%"></div>
+</div>
+</div>
+<!-- Cancellation -->
+<div>
+<div class="flex items-center justify-between text-body-sm font-body-sm mb-1">
+<span class="flex items-center gap-1.5 font-medium text-on-surface">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                  Cancellation
+                </span>
+<div class="flex items-center gap-2">
+<span class="text-on-surface-variant font-label-code text-label-code">461 (12.0%)</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container font-label-code text-label-code text-on-surface-variant">91.2%</span>
+</div>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 12.0%"></div>
+</div>
+</div>
+<!-- Refund -->
+<div>
+<div class="flex items-center justify-between text-body-sm font-body-sm mb-1">
+<span class="flex items-center gap-1.5 font-medium text-on-surface">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+                  Refund
+                </span>
+<div class="flex items-center gap-2">
+<span class="text-on-surface-variant font-label-code text-label-code">308 (8.0%)</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container font-label-code text-label-code text-tertiary">94.1%</span>
+</div>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-secondary-container rounded-full" style="width: 8.0%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-3 mt-2 flex items-center justify-between text-label-md font-label-md text-on-surface-variant bg-surface-container-low px-3 py-2 rounded-lg">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-tertiary">check</span>
+          Highest precision category: <strong class="text-on-surface">Payment (97.4%)</strong>
+</span>
+<a class="text-primary font-medium hover:underline" href="#">View Taxonomy Rules →</a>
+</div>
+</div>
+<!-- Card B: Priority & Ticket Status Breakdown -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-5 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Priority &amp; Ticket Status Breakdown</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Triage urgency distribution and workflow throughput</p>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-code text-label-code font-medium">94.6% SLA Met</span>
+</div>
+<!-- Part 1: Priority Distribution -->
+<div class="mb-5">
+<div class="flex items-center justify-between mb-2">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface uppercase tracking-wide">1. Priority Distribution</span>
+<span class="text-on-surface-variant font-label-code text-label-code">Total: 3,842</span>
+</div>
+<!-- Stacked Segmented Bar -->
+<div class="w-full h-3 rounded-full bg-surface-container flex overflow-hidden mb-3">
+<div class="h-full bg-error" style="width: 6.5%" title="High: 248 tickets (6.5%)"></div>
+<div class="h-full bg-primary-container" style="width: 48.0%" title="Medium: 1,844 tickets (48.0%)"></div>
+<div class="h-full bg-outline-variant" style="width: 45.5%" title="Low: 1,750 tickets (45.5%)"></div>
+</div>
+<!-- Priority Legend Cards -->
+<div class="grid grid-cols-3 gap-2">
+<div class="p-2.5 rounded-lg bg-surface-container-low flex flex-col">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-label-md text-label-md font-medium text-error">High</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface">248</span>
+<span class="text-on-surface-variant font-label-code text-label-code">6.5% of total</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low flex flex-col">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-label-md text-label-md font-medium text-primary">Medium</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface">1,844</span>
+<span class="text-on-surface-variant font-label-code text-label-code">48.0% of total</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low flex flex-col">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="font-label-md text-label-md font-medium text-on-surface-variant">Low</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface">1,750</span>
+<span class="text-on-surface-variant font-label-code text-label-code">45.5% of total</span>
+</div>
+</div>
+</div>
+<!-- Part 2: Current Ticket Status -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface uppercase tracking-wide">2. Current Ticket Status</span>
+<span class="text-on-surface-variant font-label-code text-label-code">Cycle Duration: 30d</span>
+</div>
+<!-- Status Bar -->
+<div class="w-full h-3 rounded-full bg-surface-container flex overflow-hidden mb-3">
+<div class="h-full bg-primary" style="width: 3.7%" title="Open: 142 tickets (3.7%)"></div>
+<div class="h-full bg-secondary-container" style="width: 5.7%" title="In Progress: 220 tickets (5.7%)"></div>
+<div class="h-full bg-tertiary-container" style="width: 90.6%" title="Resolved: 3,480 tickets (90.6%)"></div>
+</div>
+<!-- Status Legend -->
+<div class="grid grid-cols-3 gap-2">
+<div class="p-2.5 rounded-lg bg-surface-container-low flex flex-col">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-label-md text-label-md font-medium text-primary">Open</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface">142</span>
+<span class="text-on-surface-variant font-label-code text-label-code">3.7% active</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low flex flex-col">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span class="font-label-md text-label-md font-medium text-secondary">In Progress</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface">220</span>
+<span class="text-on-surface-variant font-label-code text-label-code">5.7% in queue</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low flex flex-col">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-label-md text-label-md font-medium text-tertiary">Resolved</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface">3,480</span>
+<span class="text-on-surface-variant font-label-code text-label-code">90.6% completed</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-3 mt-4 text-body-sm font-body-sm text-on-surface-variant flex items-center justify-between">
+<span class="inline-flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base text-tertiary">shield</span>
+          SLA Compliance Rate: <strong class="text-on-surface">98.2%</strong>
+</span>
+<span class="font-label-code text-label-code text-on-surface-variant">Avg first response: 3m 40s</span>
+</div>
+</div>
+</div>
+<!-- SECTION 3: AI Classification Performance & Methodology -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Card C: AI Performance & Intelligence Telemetry -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-5 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">AI Performance &amp; Intelligence Telemetry</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Model accuracy, confidence scoring, and fallback dynamics</p>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-code text-label-code font-bold">GEMINI 1.5</span>
+</div>
+<!-- 4 Telemetry Stat Blocks -->
+<div class="grid grid-cols-2 gap-3 my-3">
+<!-- 1. AI Classification Accuracy -->
+<div class="p-3 rounded-lg bg-surface-container-low flex flex-col justify-between">
+<span class="text-on-surface-variant font-label-md text-label-md">Classification Accuracy</span>
+<div class="flex items-baseline gap-2 my-1">
+<span class="font-headline-lg text-headline-lg text-on-surface">96.8%</span>
+<span class="font-label-code text-label-code text-tertiary font-semibold">&gt; Target 95%</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full rounded-full" style="width: 96.8%"></div>
+</div>
+</div>
+<!-- 2. Average Confidence Score -->
+<div class="p-3 rounded-lg bg-surface-container-low flex flex-col justify-between">
+<span class="text-on-surface-variant font-label-md text-label-md">Average Confidence</span>
+<div class="flex items-baseline gap-2 my-1">
+<span class="font-headline-lg text-headline-lg text-on-surface">94.8%</span>
+<span class="font-label-code text-label-code text-secondary font-semibold">+1.8% gain</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary-container h-full rounded-full" style="width: 94.8%"></div>
+</div>
+</div>
+<!-- 3. Rules + ML Hybrid Success -->
+<div class="p-3 rounded-lg bg-surface-container-low flex flex-col justify-between">
+<span class="text-on-surface-variant font-label-md text-label-md">Hybrid Fast Pipeline</span>
+<div class="flex items-baseline gap-2 my-1">
+<span class="font-headline-lg text-headline-lg text-on-surface">88.4%</span>
+<span class="font-label-code text-label-code text-on-surface-variant">180ms latency</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 88.4%"></div>
+</div>
+</div>
+<!-- 4. Deep Reasoning Fallback -->
+<div class="p-3 rounded-lg bg-surface-container-low flex flex-col justify-between">
+<span class="text-on-surface-variant font-label-md text-label-md">Gemini Deep Fallback</span>
+<div class="flex items-baseline gap-2 my-1">
+<span class="font-headline-lg text-headline-lg text-on-surface">4.3%</span>
+<span class="font-label-code text-label-code text-on-surface-variant">154 tickets</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-surface-dim h-full rounded-full" style="width: 4.3%"></div>
+</div>
+</div>
+</div>
+<!-- Visual Distribution of Confidence Intervals -->
+<div class="mt-4 pt-3">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface block mb-2">Confidence Interval Distribution</span>
+<div class="space-y-2">
+<!-- High Confidence >95% -->
+<div>
+<div class="flex justify-between text-body-sm font-body-sm mb-1">
+<span class="flex items-center gap-1.5 text-on-surface">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                  &gt;95% High Confidence (Direct Auto-Dispatch)
+                </span>
+<span class="font-label-code text-label-code font-semibold text-on-surface">78% (2,996)</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-tertiary rounded-full" style="width: 78%"></div>
+</div>
+</div>
+<!-- Medium Confidence 80-95% -->
+<div>
+<div class="flex justify-between text-body-sm font-body-sm mb-1">
+<span class="flex items-center gap-1.5 text-on-surface">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+                  80–95% Medium Confidence (Suggested Action)
+                </span>
+<span class="font-label-code text-label-code font-semibold text-on-surface">17% (653)</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 17%"></div>
+</div>
+</div>
+<!-- Low Confidence <80% -->
+<div>
+<div class="flex justify-between text-body-sm font-body-sm mb-1">
+<span class="flex items-center gap-1.5 text-on-surface">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+                  &lt;80% Escalated to Human Review
+                </span>
+<span class="font-label-code text-label-code font-semibold text-error">5% (193)</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 5%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-3 mt-4 text-label-md font-label-md text-on-surface-variant flex items-center justify-between">
+<span>Evaluated across 3,842 total inference passes</span>
+<span class="font-semibold text-secondary">Zero drift detected in 30 days</span>
+</div>
+</div>
+<!-- Card D: Classification Method Comparison -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-5 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Classification Method Comparison</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Comparative performance breakdown across routing pipelines</p>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-code text-label-code font-medium">3 Active Pipelines</span>
+</div>
+<!-- Comparative Stacked Bar -->
+<div class="my-3">
+<div class="flex justify-between text-label-md font-label-md text-on-surface-variant mb-1.5">
+<span>Volume Share by Pipeline</span>
+<span>100% of classified tickets</span>
+</div>
+<div class="w-full h-3 rounded-full bg-surface-container flex overflow-hidden">
+<div class="h-full bg-primary" style="width: 62%" title="Rules + ML: 62%"></div>
+<div class="h-full bg-secondary-container" style="width: 34%" title="ML Direct: 34%"></div>
+<div class="h-full bg-inverse-primary" style="width: 4%" title="Deep Reasoning Fallback: 4%"></div>
+</div>
+</div>
+<!-- Pipeline Cards Comparison Table -->
+<div class="flex flex-col gap-2.5 my-3">
+<!-- 1. Rules + ML -->
+<div class="p-3 rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="flex items-start gap-2.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary mt-1 flex-shrink-0"></span>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Rules + ML</span>
+<span class="font-label-code text-label-code bg-surface-container px-1.5 py-0.2 rounded text-on-surface-variant">Fast Pattern</span>
+</div>
+<p class="text-on-surface-variant font-body-sm text-body-sm">Payment disputes, billing renewals, deterministic triggers</p>
+</div>
+</div>
+<div class="flex items-center gap-4 text-right flex-shrink-0">
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">62% <span class="text-on-surface-variant font-label-code text-label-code font-normal">(2,382)</span></div>
+<div class="text-tertiary font-label-code text-label-code">98.1% Acc · 110ms</div>
+</div>
+</div>
+</div>
+<!-- 2. ML Direct -->
+<div class="p-3 rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="flex items-start gap-2.5">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary-container mt-1 flex-shrink-0"></span>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">ML Direct</span>
+<span class="font-label-code text-label-code bg-secondary-fixed text-on-secondary-fixed-variant px-1.5 py-0.2 rounded">Gemini Flash</span>
+</div>
+<p class="text-on-surface-variant font-body-sm text-body-sm">Natural language inquiries, multi-turn sentiment context</p>
+</div>
+</div>
+<div class="flex items-center gap-4 text-right flex-shrink-0">
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">34% <span class="text-on-surface-variant font-label-code text-label-code font-normal">(1,306)</span></div>
+<div class="text-tertiary font-label-code text-label-code">95.4% Acc · 320ms</div>
+</div>
+</div>
+</div>
+<!-- 3. Gemini Deep Reasoning Fallback -->
+<div class="p-3 rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="flex items-start gap-2.5">
+<span class="w-2.5 h-2.5 rounded-full bg-inverse-primary mt-1 flex-shrink-0"></span>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Gemini Pro Reasoning</span>
+<span class="font-label-code text-label-code bg-surface-container-highest px-1.5 py-0.2 rounded text-primary">Fallback</span>
+</div>
+<p class="text-on-surface-variant font-body-sm text-body-sm">Multi-topic ambiguous escalations, contract dispute clauses</p>
+</div>
+</div>
+<div class="flex items-center gap-4 text-right flex-shrink-0">
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">4% <span class="text-on-surface-variant font-label-code text-label-code font-normal">(154)</span></div>
+<div class="text-on-surface-variant font-label-code text-label-code">92.7% Acc · 1.1s</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recommendation Callout -->
+<div class="mt-3 p-3 rounded-lg bg-surface-container flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-xl flex-shrink-0 mt-0.5">tips_and_updates</span>
+<div class="text-body-sm font-body-sm text-on-surface">
+<strong class="font-semibold text-primary">Optimization tip:</strong> Adding 3 regex patterns to the keyword dictionary will transition <strong>45 fallback tickets</strong> directly into the instant Rules+ML pipeline, shaving ~950ms per resolution.
+        </div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple micro-interactions for Range Dropdown and Refresh animation
+  (function initAnalyticsControls() {
+    const dropdownBtn = document.getElementById('rangeDropdownBtn');
+    const dropdownMenu = document.getElementById('rangeDropdownMenu');
+    const selectedLabel = document.getElementById('selectedRangeLabel');
+    const refreshBtn = document.getElementById('refreshBtn');
+    const refreshIcon = document.getElementById('refreshIcon');
+
+    if (dropdownBtn && dropdownMenu) {
+      dropdownBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownMenu.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!dropdownMenu.contains(e.target) && e.target !== dropdownBtn) {
+          dropdownMenu.classList.add('hidden');
+        }
+      });
+
+      const items = dropdownMenu.querySelectorAll('.dropdown-item');
+      items.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
+          const range = item.getAttribute('data-range');
+          if (selectedLabel && range) {
+            selectedLabel.textContent = range;
+          }
+          dropdownMenu.classList.add('hidden');
+        });
+      });
+    }
+
+      if (refreshBtn && refreshIcon) {
+        refreshBtn.addEventListener('click', () => {
+          refreshIcon.classList.add('animate-spin');
+          refreshBtn.setAttribute('disabled', 'true');
+          setTimeout(() => {
+            refreshIcon.classList.remove('animate-spin');
+            refreshBtn.removeAttribute('disabled');
+          }, 800);
+        });
+      }
+      
+      async function loadAnalytics() {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/analytics");
+      const data = await response.json();
+
+      document.getElementById("total-tickets").innerText = data.total_tickets;
+      document.getElementById("open-tickets").innerText = data.open_tickets;
+      document.getElementById("resolved-tickets").innerText = data.resolved_tickets;
+      document.getElementById("high-priority").innerText = data.high_priority_tickets;
+      document.getElementById("avg-confidence").innerText =
+  (data.avg_confidence * 100).toFixed(1) + "%";
+
+  document.getElementById("category-total").innerText =
+  data.total_tickets;
+
+ const paymentCount = data.category_counts.Payment;
+const paymentCountPercent =
+  (paymentCount / data.total_tickets) * 100;
+
+document.getElementById("payment-count").innerText =
+  `${paymentCount} (${paymentCountPercent.toFixed(1)}%)`;
+
+  const accountCount = data.category_counts.Account;
+const accountCountPercent =
+  (accountCount / data.total_tickets) * 100;
+
+document.getElementById("account-count").innerText =
+  `${accountCount} (${accountCountPercent.toFixed(1)}%)`;
+
+  const total = data.total_tickets;
+
+const paymentPercent =
+  total > 0
+    ? (data.category_counts.Payment / total) * 100
+    : 0;
+
+document.getElementById("payment-circle").setAttribute(
+  "stroke-dasharray",
+  `${(paymentPercent / 100) * 301.6} 301.6`
+);
+
+    } catch (error) {
+      console.error("Analytics API error:", error);
+    }
+  }
+
+  loadAnalytics();
+
+    })();
+  </script></main></div></body></html>

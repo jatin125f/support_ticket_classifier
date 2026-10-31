@@ -1,0 +1,21 @@
+id,text,category,priority
+1,"Payment was deducted but my order is still pending",Payment,High
+2,"My payment failed while placing the order",Payment,High
+3,"I was charged twice for the same order",Payment,High
+4,"How can I reset my password?",Account,Medium
+5,"I forgot my account password",Account,Medium
+6,"How can I change my email address?",Account,Low
+7,"My order has not arrived yet",Delivery,High
+8,"Where is my order?",Delivery,Medium
+9,"My package is delayed",Delivery,Medium
+10,"I want to cancel my order",Cancellation,Medium
+11,"Please cancel my order immediately",Cancellation,High
+12,"I received a damaged product",Refund,High
+13,"I want a refund for my damaged product",Refund,High
+14,"How can I get a refund?",Refund,Medium
+15,"My payment was successful but the order was cancelled",Payment,High
+16,"I cannot login to my account",Account,High
+17,"When will my package arrive?",Delivery,Low
+18,"The product I received is broken",Refund,High
+19,"I want to cancel the product I ordered",Cancellation,Medium
+20,"My card was charged but the transaction failed",Payment,High

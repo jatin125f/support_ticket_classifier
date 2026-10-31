@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+pydantic
+python-dotenv
+pandas
+numpy
+scikit-learn==1.9.1
+joblib
+httpx
+SQLAlchemy
+python-multipart
+google-genai
+pytest
+streamlit
+transformers
+torch
+sentencepiece

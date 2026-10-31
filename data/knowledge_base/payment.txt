@@ -1,0 +1,13 @@
+Payment Support Policy
+
+If a customer reports that money was deducted but the order
+is still pending, first verify the transaction status.
+
+If the payment was successful but the order was not created,
+the payment should be reviewed for refund according to company policy.
+
+If a customer was charged twice, verify both transactions
+and initiate the duplicate payment resolution process.
+
+For failed payments, ask the customer to verify the payment
+method and try again.

@@ -1,0 +1,8 @@
+Account Support Policy
+
+For forgotten passwords, the customer should use the
+password reset option.
+
+For login problems, verify the registered email and account status.
+
+Customers can update their account information after successful login.

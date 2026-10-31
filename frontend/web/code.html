@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Support Operations & AI Classifier - AI SupportDesk</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
+  <style>
+    @layer base {
+      html, body { margin:0; padding:0; }
+      body { overscroll-behavior:none; }
+      main>:first-child { margin-top:0!important; }
+      main>:last-child { margin-bottom:0!important; }
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #eff4ff; }
+    ::-webkit-scrollbar-thumb { background: #c3c6d7; border-radius: 4px; }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-background": "#0b1c30",
+            "surface-bright": "#f8f9ff",
+            "on-surface-variant": "#434655",
+            "on-tertiary": "#ffffff",
+            "outline-variant": "#c3c6d7",
+            "inverse-primary": "#b4c5ff",
+            "surface": "#f8f9ff",
+            "primary-container": "#2563eb",
+            "on-secondary": "#ffffff",
+            "error": "#ba1a1a",
+            "secondary-fixed-dim": "#d2bbff",
+            "surface-variant": "#d3e4fe",
+            "on-tertiary-fixed": "#00201d",
+            "on-surface": "#0b1c30",
+            "secondary-fixed": "#eaddff",
+            "inverse-surface": "#213145",
+            "on-error": "#ffffff",
+            "primary-fixed-dim": "#b4c5ff",
+            "surface-container": "#e5eeff",
+            "primary": "#004ac6",
+            "outline": "#737686",
+            "tertiary-fixed-dim": "#6bd8cb",
+            "primary-fixed": "#dbe1ff",
+            "on-secondary-fixed-variant": "#5a00c6",
+            "on-primary-container": "#eeefff",
+            "tertiary-container": "#007b71",
+            "on-primary-fixed-variant": "#003ea8",
+            "surface-dim": "#cbdbf5",
+            "surface-tint": "#0053db",
+            "on-primary": "#ffffff",
+            "surface-container-high": "#dce9ff",
+            "on-error-container": "#93000a",
+            "secondary-container": "#8a4cfc",
+            "on-primary-fixed": "#00174b",
+            "error-container": "#ffdad6",
+            "on-secondary-fixed": "#25005a",
+            "on-secondary-container": "#fffbff",
+            "surface-container-highest": "#d3e4fe",
+            "background": "#f8f9ff",
+            "on-tertiary-fixed-variant": "#005049",
+            "on-tertiary-container": "#b3fff3",
+            "tertiary-fixed": "#89f5e7",
+            "surface-container-low": "#eff4ff",
+            "tertiary": "#006058",
+            "inverse-on-surface": "#eaf1ff",
+            "secondary": "#712ae2",
+            "surface-container-lowest": "#ffffff"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter": "1.25rem",
+            "gutter-compact": "0.75rem",
+            "margin": "1.5rem",
+            "margin-panel": "1rem",
+            "space-lg": "1.25rem",
+            "space-md": "0.875rem",
+            "space-xl": "2rem"
+          },
+          fontFamily: {
+            "headline-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "headline-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-xl": ["Inter"],
+            "label-md": ["Inter"],
+            "label-code": ["JetBrains Mono"]
+          },
+          fontSize: {
+            "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+            "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+            "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+            "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+            "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+            "headline-xl": ["30px", {"lineHeight": "38px", "fontWeight": "700"}],
+            "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+            "label-code": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+          }
+        }
+      }
+    };
+  </script>
+  <script src="api.js"></script>
+</head>
+<body class="bg-background font-body-md text-on-surface antialiased">
+  <!-- Sidebar -->
+  <aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="flex flex-col">
+      <div class="h-16 px-space-lg flex items-center justify-between">
+        <div class="flex items-center gap-space-sm">
+          <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary font-bold">
+            <span class="material-symbols-outlined text-lg">support_agent</span>
+          </div>
+          <span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">AI SupportDesk</span>
+        </div>
+        <span class="px-2 py-0.5 rounded-full bg-surface-container text-primary font-label-md text-label-md font-semibold">AI</span>
+      </div>
+
+      <div class="px-space-md py-space-sm">
+        <nav class="flex flex-col gap-1">
+          <a class="flex items-center justify-between px-space-md py-2.5 transition-all bg-primary-container text-on-primary-container font-semibold rounded-lg" href="code.html">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-xl">dashboard</span>
+              <span>Dashboard</span>
+            </div>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-body-md text-body-md" href="ticket-queue.html">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-xl">inbox</span>
+              <span>Ticket Queue</span>
+            </div>
+            <span id="sidebar-queue-badge" class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-md text-label-md font-semibold">--</span>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-body-md text-body-md" href="analytics.html">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-xl">bar_chart</span>
+              <span>Analytics</span>
+            </div>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-body-md text-body-md" href="bulk-upload.html">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-xl">cloud_upload</span>
+              <span>Bulk Upload</span>
+            </div>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-body-md text-body-md" href="knowledge-base.html">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-xl">auto_stories</span>
+              <span>Knowledge Base</span>
+            </div>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="p-space-md flex flex-col gap-space-sm">
+      <div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span>
+          <span class="font-label-md text-label-md text-on-surface-variant font-medium">Hybrid AI Engine</span>
+        </div>
+        <span class="font-label-code text-label-code text-tertiary font-semibold">ACTIVE</span>
+      </div>
+      <div class="flex items-center justify-between pt-space-xs px-space-xs">
+        <a class="flex items-center gap-2 text-on-surface-variant hover:text-on-surface transition-colors font-body-sm text-body-sm" href="knowledge-base.html">
+          <span class="material-symbols-outlined text-lg">help</span>
+          <span>Policy Docs</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Header -->
+  <div class="pl-64">
+    <header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-margin">
+      <div class="flex items-center flex-1 max-w-xl">
+        <div class="relative w-full">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">search</span>
+          <input id="header-search-input" class="w-full h-10 pl-10 pr-12 rounded-lg bg-surface-container-low text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary-container font-body-sm text-body-sm transition-all" placeholder="Search tickets by ID, keyword, issue..." type="text"/>
+        </div>
+      </div>
+      <div class="flex items-center gap-space-md">
+        <button id="open-new-ticket-modal-btn" class="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-primary-container text-on-primary-container hover:bg-primary transition-colors font-body-sm text-body-sm font-semibold shadow-sm" type="button">
+          <span class="material-symbols-outlined text-lg">add</span>
+          <span>New Ticket</span>
+        </button>
+        <div class="h-6 w-px bg-outline-variant"></div>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-secondary-fixed text-secondary flex items-center justify-center font-bold font-label-md">
+            AS
+          </div>
+          <div class="hidden md:flex flex-col">
+            <span class="font-body-sm text-body-sm font-semibold text-on-surface leading-tight">Support Lead</span>
+            <span class="font-label-md text-label-md text-on-surface-variant leading-tight">Tier 2 Triage</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="w-full pt-16 bg-background px-margin min-h-screen">
+      <div class="flex flex-col w-full pb-space-xl">
+        <!-- Top Utility Bar / Page Header -->
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md py-space-md">
+          <div>
+            <div class="flex items-center gap-space-sm">
+              <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Support Operations & AI Classifier</h1>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-md text-label-md font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+                Live SQLite Telemetry
+              </span>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Automated semantic routing, SLA priority assignment, and confidence scoring</p>
+          </div>
+          <!-- Action Bar -->
+          <div class="flex flex-wrap items-center gap-space-sm">
+            <button id="export-csv-btn" class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-surface-container-lowest text-on-surface shadow-sm hover:bg-surface-container-low transition-all font-body-sm text-body-sm font-medium" type="button">
+              <span class="material-symbols-outlined text-lg text-on-surface-variant">download</span>
+              <span>Export CSV</span>
+            </button>
+            <a href="bulk-upload.html" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary text-on-secondary shadow-md hover:opacity-90 active:scale-95 transition-all font-body-sm text-body-sm font-semibold">
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">cloud_upload</span>
+              <span>Bulk Upload</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 5-Metric Quick Stats Strip -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-space-md mt-space-sm">
+          <!-- Stat 1: Total Tickets -->
+          <div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-semibold">Total Tickets</span>
+              <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-xl">confirmation_number</span>
+              </div>
+            </div>
+            <div class="mt-space-sm">
+              <div id="kpi-total" class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">--</div>
+              <div class="flex items-center gap-1.5 mt-1 font-body-sm text-body-sm text-tertiary">
+                <span class="material-symbols-outlined text-base">database</span>
+                <span class="font-medium">Live Database Records</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stat 2: Open Tickets -->
+          <div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-semibold">Open Tickets</span>
+              <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary-container">
+                <span class="material-symbols-outlined text-xl">mark_email_unread</span>
+              </div>
+            </div>
+            <div class="mt-space-sm">
+              <div id="kpi-open" class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">--</div>
+              <div class="flex items-center gap-1.5 mt-1">
+                <span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-semibold">Awaiting Agent</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stat 3: In Progress -->
+          <div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-semibold">In Progress</span>
+              <div class="w-8 h-8 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+                <span class="material-symbols-outlined text-xl">pending_actions</span>
+              </div>
+            </div>
+            <div class="mt-space-sm">
+              <div id="kpi-progress" class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">--</div>
+              <div class="flex items-center gap-1.5 mt-1">
+                <span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md font-medium">Under Investigation</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stat 4: Resolved -->
+          <div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-semibold">Resolved</span>
+              <div class="w-8 h-8 rounded-lg bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed-variant">
+                <span class="material-symbols-outlined text-xl">task_alt</span>
+              </div>
+            </div>
+            <div class="mt-space-sm">
+              <div id="kpi-resolved" class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">--</div>
+              <div class="flex items-center gap-1.5 mt-1 font-body-sm text-body-sm text-tertiary">
+                <span class="material-symbols-outlined text-base">check_circle</span>
+                <span class="font-medium">Closed Tickets</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stat 5: High Priority -->
+          <div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-semibold">High Priority</span>
+              <div class="w-8 h-8 rounded-lg bg-error-container flex items-center justify-center text-error">
+                <span class="material-symbols-outlined text-xl">priority_high</span>
+              </div>
+            </div>
+            <div class="mt-space-sm">
+              <div id="kpi-high" class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">--</div>
+              <div class="flex items-center gap-1.5 mt-1">
+                <span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-md text-label-md font-semibold">SLA Critical</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Telemetry Summary Row -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md mt-space-md">
+          <!-- AI Intelligence Card (7 cols) -->
+          <div class="lg:col-span-7 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap items-center justify-between gap-space-sm pb-space-sm">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center text-on-secondary shadow-sm">
+                    <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">neurology</span>
+                  </div>
+                  <div>
+                    <h2 class="font-headline-sm text-headline-sm text-on-surface">AI Classification Engine</h2>
+                    <span id="telemetry-subtitle" class="font-label-md text-label-md text-on-surface-variant">Hybrid Pipeline: Rules + TF-IDF ML + Gemini Fallback</span>
+                  </div>
+                </div>
+                <span class="px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md font-semibold flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">verified</span>
+                  Realtime Pipeline
+                </span>
+              </div>
+
+              <!-- Metric: Average AI Confidence -->
+              <div class="mt-space-md">
+                <div class="flex items-center justify-between font-body-sm text-body-sm mb-1.5">
+                  <span class="font-semibold text-on-surface">Average AI Confidence</span>
+                  <div class="flex items-center gap-2">
+                    <span id="telemetry-avg-confidence" class="font-label-code text-label-code font-bold text-tertiary">--%</span>
+                    <span class="text-on-surface-variant font-label-md text-label-md">(Across Database)</span>
+                  </div>
+                </div>
+                <div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+                  <div id="telemetry-confidence-bar" class="h-full bg-tertiary-container rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+              </div>
+
+              <!-- Pipeline Flow Indicators -->
+              <div class="grid grid-cols-3 gap-3 mt-4 pt-3 border-t border-surface-container-low text-center">
+                <div class="p-2 rounded-lg bg-surface-container-low">
+                  <span class="font-label-md text-on-surface-variant block">Rule Engine</span>
+                  <span class="font-body-sm font-semibold text-primary">Fast Keyword Gate</span>
+                </div>
+                <div class="p-2 rounded-lg bg-surface-container-low">
+                  <span class="font-label-md text-on-surface-variant block">ML Classifier</span>
+                  <span class="font-body-sm font-semibold text-secondary">TF-IDF + Logistic Reg</span>
+                </div>
+                <div class="p-2 rounded-lg bg-surface-container-low">
+                  <span class="font-label-md text-on-surface-variant block">Gemini Fallback</span>
+                  <span class="font-body-sm font-semibold text-tertiary">&lt; 30% Confidence</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category Breakdown Preview (5 cols) -->
+          <div class="lg:col-span-5 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+            <div class="flex items-center justify-between pb-space-sm">
+              <h2 class="font-headline-sm text-headline-sm text-on-surface">Category Distribution</h2>
+              <a href="analytics.html" class="text-primary hover:underline font-label-md text-label-md font-semibold flex items-center gap-1">
+                Full Analytics <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </a>
+            </div>
+            <div id="category-preview-list" class="flex flex-col gap-2 mt-2">
+              <!-- Dynamically populated -->
+              <div class="text-on-surface-variant text-center py-4 text-body-sm">Loading category breakdown...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="mt-space-lg p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+          <div class="flex flex-wrap items-center gap-space-sm flex-1">
+            <!-- Category Filter -->
+            <select id="category-filter" class="px-3 py-2 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm font-medium border-0 focus:ring-2 focus:ring-primary-container outline-none">
+              <option value="All Categories">All Categories</option>
+              <option value="Payment">Payment</option>
+              <option value="Account">Account</option>
+              <option value="Delivery">Delivery</option>
+              <option value="Cancellation">Cancellation</option>
+              <option value="Refund">Refund</option>
+              <option value="Unknown">Unknown</option>
+            </select>
+
+            <!-- Priority Filter -->
+            <select id="priority-filter" class="px-3 py-2 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm font-medium border-0 focus:ring-2 focus:ring-primary-container outline-none">
+              <option value="All Priorities">All Priorities</option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+
+            <!-- Status Filter -->
+            <select id="status-filter" class="px-3 py-2 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm font-medium border-0 focus:ring-2 focus:ring-primary-container outline-none">
+              <option value="All Statuses">All Statuses</option>
+              <option value="Open">Open</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Resolved">Resolved</option>
+            </select>
+
+            <!-- Search input in toolbar -->
+            <div class="relative flex-1 min-w-[200px]">
+              <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
+              <input id="table-search-input" class="w-full h-9 pl-9 pr-3 rounded-lg bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary-container" placeholder="Filter tickets..." type="text"/>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md">
+            <span>Showing <span id="filtered-ticket-count" class="font-bold text-on-surface">0</span> tickets</span>
+          </div>
+        </div>
+
+        <!-- Ticket Table Section -->
+        <div class="mt-space-md rounded-xl bg-surface-container-lowest shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b border-surface-container bg-surface-bright text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">
+                  <th class="py-3 px-space-md font-semibold">Ticket ID</th>
+                  <th class="py-3 px-space-md font-semibold">Customer Message</th>
+                  <th class="py-3 px-space-md font-semibold">Category</th>
+                  <th class="py-3 px-space-md font-semibold">Priority</th>
+                  <th class="py-3 px-space-md font-semibold">AI Confidence</th>
+                  <th class="py-3 px-space-md font-semibold">Method</th>
+                  <th class="py-3 px-space-md font-semibold">Status</th>
+                  <th class="py-3 px-space-md font-semibold text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody id="tickets-tbody" class="divide-y divide-surface-container-low font-body-md text-body-md">
+                <tr>
+                  <td colspan="8" class="py-8 text-center text-on-surface-variant">Loading support tickets...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Table Footer -->
+          <div class="p-space-md flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm bg-surface-container-low">
+            <div class="font-body-sm text-body-sm text-on-surface-variant">
+              Live records from <span class="font-semibold text-on-surface">support_tickets.db</span>
+            </div>
+            <a href="ticket-queue.html" class="inline-flex items-center gap-1 text-primary hover:underline font-body-sm text-body-sm font-semibold">
+              Open Full Ticket Queue <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- New Ticket Modal -->
+  <div id="new-ticket-modal" class="fixed inset-0 bg-on-background/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-surface-container-lowest rounded-2xl max-w-lg w-full p-6 shadow-xl border border-surface-container">
+      <div class="flex items-center justify-between pb-3 border-b border-surface-container">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-2xl">add_circle</span>
+          <h2 class="font-headline-md text-headline-md text-on-surface">Create New Support Ticket</h2>
+        </div>
+        <button id="close-modal-btn" class="p-1 rounded-lg text-on-surface-variant hover:bg-surface-container">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <form id="new-ticket-form" class="mt-4 flex flex-col gap-4">
+        <div>
+          <label class="block font-label-md text-label-md text-on-surface-variant mb-1 font-semibold">Customer Ticket Message *</label>
+          <textarea id="modal-ticket-text" rows="4" required minlength="3" class="w-full p-3 rounded-lg bg-surface-container-low border border-outline-variant text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary-container font-body-sm" placeholder="e.g. My card was charged twice for the same transaction..."></textarea>
+        </div>
+
+        <div id="modal-result-box" class="hidden p-3 rounded-xl bg-surface-container-low border border-surface-container text-body-sm flex flex-col gap-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-on-surface">Classification Result:</span>
+            <span id="modal-result-badge" class="px-2 py-0.5 rounded-full font-label-md text-label-md font-semibold">--</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-xs text-on-surface-variant">
+            <div>Priority: <strong id="modal-result-priority" class="text-on-surface">--</strong></div>
+            <div>Confidence: <strong id="modal-result-confidence" class="text-on-surface">--</strong></div>
+            <div>Method: <strong id="modal-result-method" class="text-on-surface">--</strong></div>
+            <div>Status: <strong class="text-on-surface">Open</strong></div>
+          </div>
+          <a id="modal-result-link" href="#" class="inline-flex items-center justify-center gap-1 px-3 py-1.5 rounded-lg bg-primary-container text-on-primary-container font-semibold mt-1 hover:bg-primary transition-colors text-xs">
+            Open in Ticket Detail <span class="material-symbols-outlined text-xs">open_in_new</span>
+          </a>
+        </div>
+
+        <div class="flex items-center justify-end gap-2 pt-2">
+          <button type="button" id="modal-cancel-btn" class="px-4 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm font-medium">Cancel</button>
+          <button type="submit" id="modal-submit-btn" class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-body-sm font-semibold transition-all">
+            <span class="material-symbols-outlined text-base">auto_awesome</span>
+            <span>Classify & Save</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let allTickets = [];
+
+    // Helper: category pill style
+    function getCategoryBadge(category) {
+      const styles = {
+        Payment: "bg-primary-fixed text-on-primary-fixed-variant",
+        Account: "bg-surface-variant text-on-surface",
+        Delivery: "bg-tertiary-fixed text-on-tertiary-fixed-variant",
+        Cancellation: "bg-error-container text-on-error-container",
+        Refund: "bg-secondary-fixed text-on-secondary-fixed-variant",
+        Unknown: "bg-surface-container-high text-on-surface-variant"
+      };
+      const cls = styles[category] || styles.Unknown;
+      return `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-md text-label-md font-semibold ${cls}">${category}</span>`;
+    }
+
+    // Helper: priority pill style
+    function getPriorityBadge(priority) {
+      if (priority === "High") {
+        return `<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-md text-label-md font-semibold">High</span>`;
+      } else if (priority === "Medium") {
+        return `<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold">Medium</span>`;
+      } else {
+        return `<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-low text-on-surface-variant font-label-md text-label-md font-medium">Low</span>`;
+      }
+    }
+
+    // Helper: status pill style
+    function getStatusBadge(status) {
+      if (status === "Resolved") {
+        return `<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-md text-label-md font-semibold">Resolved</span>`;
+      } else if (status === "In Progress") {
+        return `<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold">In Progress</span>`;
+      } else {
+        return `<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-semibold">Open</span>`;
+      }
+    }
+
+    // Load Dashboard KPIs and Analytics
+    async function loadDashboardAnalytics() {
+      try {
+        const data = await API.getAnalytics();
+
+        document.getElementById("kpi-total").innerText = data.total_tickets;
+        document.getElementById("kpi-open").innerText = data.open_tickets;
+        document.getElementById("kpi-progress").innerText = data.in_progress_tickets;
+        document.getElementById("kpi-resolved").innerText = data.resolved_tickets;
+        document.getElementById("kpi-high").innerText = data.high_priority_tickets;
+
+        const queueBadge = document.getElementById("sidebar-queue-badge");
+        if (queueBadge) queueBadge.innerText = data.open_tickets;
+
+        const avgPct = (data.avg_confidence * 100).toFixed(1);
+        document.getElementById("telemetry-avg-confidence").innerText = `${avgPct}%`;
+        document.getElementById("telemetry-confidence-bar").style.width = `${Math.min(avgPct, 100)}%`;
+
+        // Render Category Breakdown Preview
+        const previewList = document.getElementById("category-preview-list");
+        if (previewList && data.category_counts) {
+          previewList.innerHTML = "";
+          const cats = ["Payment", "Account", "Delivery", "Cancellation", "Refund"];
+          const total = data.total_tickets || 1;
+
+          cats.forEach(cat => {
+            const count = data.category_counts[cat] || 0;
+            const pct = ((count / total) * 100).toFixed(0);
+            const row = document.createElement("div");
+            row.className = "flex items-center justify-between text-body-sm";
+            row.innerHTML = `
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+                <span class="font-medium text-on-surface">${cat}</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="font-bold text-on-surface">${count}</span>
+                <span class="text-xs text-on-surface-variant font-label-code w-10 text-right">${pct}%</span>
+              </div>
+            `;
+            previewList.appendChild(row);
+          });
+        }
+      } catch (err) {
+        console.error("Dashboard analytics error:", err);
+      }
+    }
+
+    // Render Table Rows
+    function renderTicketsTable(tickets) {
+      const tbody = document.getElementById("tickets-tbody");
+      const countEl = document.getElementById("filtered-ticket-count");
+      countEl.innerText = tickets.length;
+
+      if (!tickets.length) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="py-12 text-center text-on-surface-variant">
+              <span class="material-symbols-outlined text-4xl block mb-2 text-outline">search_off</span>
+              <p class="font-semibold text-on-surface">No support tickets match the selected filters.</p>
+              <p class="text-xs text-on-surface-variant mt-1">Try resetting the category, priority, or search query.</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = "";
+      tickets.slice(0, 10).forEach(ticket => {
+        const tr = document.createElement("tr");
+        tr.className = "hover:bg-surface-container-lowest/60 transition-colors";
+        tr.innerHTML = `
+          <td class="py-3 px-space-md font-label-code text-label-code font-bold text-primary">
+            #TCK-${ticket.id}
+          </td>
+          <td class="py-3 px-space-md max-w-xs">
+            <div class="truncate font-body-sm text-on-surface font-medium" title="${ticket.text}">
+              ${ticket.text}
+            </div>
+          </td>
+          <td class="py-3 px-space-md">${getCategoryBadge(ticket.category)}</td>
+          <td class="py-3 px-space-md">${getPriorityBadge(ticket.priority)}</td>
+          <td class="py-3 px-space-md font-label-code text-label-code font-bold text-tertiary">
+            ${(ticket.confidence * 100).toFixed(1)}%
+          </td>
+          <td class="py-3 px-space-md font-label-code text-xs text-on-surface-variant">
+            ${ticket.method || "rules + ml"}
+          </td>
+          <td class="py-3 px-space-md">${getStatusBadge(ticket.status)}</td>
+          <td class="py-3 px-space-md text-right">
+            <a href="ticket-detail.html?id=${ticket.id}" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-sm text-xs font-semibold transition-colors">
+              <span>View & Triage</span>
+              <span class="material-symbols-outlined text-xs">arrow_forward</span>
+            </a>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Apply Filters & Search
+    function applyFilters() {
+      const category = document.getElementById("category-filter").value;
+      const priority = document.getElementById("priority-filter").value;
+      const status = document.getElementById("status-filter").value;
+      const search = document.getElementById("table-search-input").value.toLowerCase().trim();
+
+      const filtered = allTickets.filter(ticket => {
+        const catMatch = category === "All Categories" || ticket.category === category;
+        const prioMatch = priority === "All Priorities" || ticket.priority === priority;
+        const statusMatch = status === "All Statuses" || ticket.status === status;
+        const searchMatch = !search ||
+          ticket.text.toLowerCase().includes(search) ||
+          `#tck-${ticket.id}`.toLowerCase().includes(search);
+
+        return catMatch && prioMatch && statusMatch && searchMatch;
+      });
+
+      renderTicketsTable(filtered);
+    }
+
+    // Load Tickets
+    async function loadTickets() {
+      try {
+        allTickets = await API.getTickets();
+        applyFilters();
+      } catch (err) {
+        console.error("Tickets loading failed:", err);
+        document.getElementById("tickets-tbody").innerHTML = `
+          <tr>
+            <td colspan="8" class="py-8 text-center text-error">
+              Failed to connect to backend at <code>${API.baseUrl}</code>. Please ensure FastAPI server is running.
+            </td>
+          </tr>
+        `;
+      }
+    }
+
+    // Export CSV
+    function exportToCSV() {
+      if (!allTickets.length) return alert("No tickets to export.");
+      const headers = ["id", "text", "category", "priority", "confidence", "method", "status"];
+      const rows = allTickets.map(t => [
+        t.id,
+        `"${(t.text || '').replace(/"/g, '""')}"`,
+        t.category,
+        t.priority,
+        t.confidence,
+        t.method,
+        t.status
+      ]);
+      const csvContent = "data:text/csv;charset=utf-8," + [headers.join(","), ...rows.map(e => e.join(","))].join("\n");
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", `support_tickets_${new Date().toISOString().slice(0, 10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // Event Listeners
+    document.getElementById("category-filter").addEventListener("change", applyFilters);
+    document.getElementById("priority-filter").addEventListener("change", applyFilters);
+    document.getElementById("status-filter").addEventListener("change", applyFilters);
+    document.getElementById("table-search-input").addEventListener("input", applyFilters);
+    document.getElementById("export-csv-btn").addEventListener("click", exportToCSV);
+
+    // Header search
+    const headerSearch = document.getElementById("header-search-input");
+    headerSearch.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && headerSearch.value.trim()) {
+        window.location.href = `ticket-queue.html?search=${encodeURIComponent(headerSearch.value.trim())}`;
+      }
+    });
+
+    // Modal Handling
+    const modal = document.getElementById("new-ticket-modal");
+    const openModalBtn = document.getElementById("open-new-ticket-modal-btn");
+    const closeModalBtn = document.getElementById("close-modal-btn");
+    const cancelModalBtn = document.getElementById("modal-cancel-btn");
+    const newTicketForm = document.getElementById("new-ticket-form");
+    const resultBox = document.getElementById("modal-result-box");
+
+    function openModal() {
+      modal.classList.remove("hidden");
+      resultBox.classList.add("hidden");
+      document.getElementById("modal-ticket-text").value = "";
+      document.getElementById("modal-ticket-text").focus();
+    }
+
+    function closeModal() {
+      modal.classList.add("hidden");
+    }
+
+    openModalBtn.addEventListener("click", openModal);
+    closeModalBtn.addEventListener("click", closeModal);
+    cancelModalBtn.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+
+    // Submit New Ticket
+    newTicketForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const text = document.getElementById("modal-ticket-text").value.trim();
+      if (!text) return;
+
+      const submitBtn = document.getElementById("modal-submit-btn");
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span class="material-symbols-outlined text-base animate-spin">refresh</span> Processing...`;
+
+      try {
+        const ticket = await API.createTicket(text);
+
+        // Show result box inside modal
+        resultBox.classList.remove("hidden");
+        const badge = document.getElementById("modal-result-badge");
+        badge.innerText = ticket.category;
+        badge.className = `px-2 py-0.5 rounded-full font-label-md text-label-md font-semibold bg-primary-fixed text-on-primary-fixed-variant`;
+
+        document.getElementById("modal-result-priority").innerText = ticket.priority;
+        document.getElementById("modal-result-confidence").innerText = `${(ticket.confidence * 100).toFixed(1)}%`;
+        document.getElementById("modal-result-method").innerText = ticket.method;
+        document.getElementById("modal-result-link").href = `ticket-detail.html?id=${ticket.id}`;
+
+        // Refresh dashboard data
+        await loadDashboardAnalytics();
+        await loadTickets();
+      } catch (err) {
+        alert("Failed to submit ticket: " + err.message);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<span class="material-symbols-outlined text-base">auto_awesome</span><span>Classify & Save</span>`;
+      }
+    });
+
+    // Initial Load
+    loadDashboardAnalytics();
+    loadTickets();
+  </script>
+</body>
+</html>
